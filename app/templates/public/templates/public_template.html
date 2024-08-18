@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/breadcrumb.css')}}">
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+  <title>{% block title%}{% endblock %}</title>
+</head>
+
+<body>
+  <center><a href="{{url_for('home')}}"><img src="{{url_for('static',filename='img/logo.png')}}" width="45%"></a>
+  </center>
+  <div class="navbar">
+    <li><a class="active" href="{{url_for('home')}}">HOME</a></li>
+    <div class="dropdown">
+      <button class="dropbtn">PRODUCTS
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a href="{{url_for('product_gallery',cat='DSLR Camera')}}">DSLR Cameras</a>
+        <a href="{{url_for('product_gallery',cat='Mirrorless Camera')}}">Mirrorless Cameras</a>
+        <a href="{{url_for('product_gallery',cat='Action Camera')}}">Action Cameras</a>
+      </div>
+    </div>
+    <li><a href="{{url_for('contact')}}">CONTACT</a></li>
+    <li><a href="{{url_for('about')}}">ABOUT</a></li>
+
+
+
+    <li style="float: right;"><a href="{{url_for('cart')}}"><i class="fa fa-shopping-cart">&nbsp;&nbsp;{{results|length}}</i></a></li>
+    <li style="float: right;">
+
+      {% if current_user.is_authenticated %}
+
+      {% if current_user.id==1 %}
+
+      <div class="dropdown">
+        <button class="dropbtn">Hello, ADMIN <i class="fa fa-caret-down"></i>
+</button>
+        <div class="dropdown-content">
+        <a href="{{url_for('dashboard')}}">DASHBOARD</a>
+          <a href="{{url_for('logout')}}">LOGOUT</a>
+        </div>
+      </div>
+
+      {% else %}
+
+      <div class="dropdown">
+        <button class="dropbtn">Hello, {{current_user.name}}
+                  <i class="fa fa-caret-down"></i>
+
+        </button>
+        <div class="dropdown-content">
+          <a href="{{url_for('logout')}}">LOGOUT</a>
+        </div>
+      </div>
+
+
+      {% endif %}
+
+      {% else %}
+    <li style="float: right;"><a href="{{url_for('login')}}">LOGIN</a></li>
+
+    {% endif %}
+
+    <li style="float:right;">
+      <div class="search-container">
+        <form action="{{url_for('search')}}" method="post">
+        {{form.csrf_token}}
+
+          <input style="border-radius: 4px;" type="text" placeholder="Search Products" name="searched">
+          <button style="border-radius: 4px;" type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </div>
+    </li>
+  </div>
+
+
+  {% block main %}
+  {% endblock %}
+
+  <footer>
+    <p>Cam Center<br>
+    <p style="color:grey">Copyright@2022 Cam Center Pvt Ltd</p>
+    </p>
+  </footer>
+</body>
+
+</html>

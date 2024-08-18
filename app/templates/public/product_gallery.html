@@ -1,0 +1,82 @@
+{% extends "public/templates/public_template.html" %}
+
+{% block title %}
+{{heading}}s
+{% endblock %}
+
+{% block main %}
+
+  <style>
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      max-width: 300px;
+      margin: auto;
+      text-align: center;
+      font-family: arial;
+    }
+
+    .price {
+      color: grey;
+      font-size: 22px;
+    }
+
+    .card button {
+      border: none;
+      outline: 0;
+      padding: 12px;
+      color: white;
+      background-color: #000;
+      text-align: center;
+      cursor: pointer;
+      width: 100%;
+      font-size: 18px;
+    }
+
+    .card button:hover {
+      opacity: 0.7;
+    }
+
+
+    .about-section {
+      padding: 10px;
+      text-align: center;
+      background-color: #474e5d;
+      color: white;
+    }
+  </style>
+
+  <div class="about-section">
+    <ul class="breadcrumb">
+      <li><a href="{{url_for('home')}}">Home</a></li>
+      <li><a href="{{url_for('products')}}">Products</a></li>
+      <li>{{heading}}s</li>
+    </ul>
+
+    <h1>{{heading}}s</h1>
+  </div>
+
+  <table style="width:100%" cellspacing="50px">
+
+    <tr>
+
+  {% for p in products %}
+  
+  <td>
+    <div class="card">
+      <a href="{{url_for('product_specs',id=p.pid)}}"><img src="{{url_for('static',filename='img/'+p.image)}}" style="width:100%"></a>
+      <h1>{{p.pname}}</h1>
+      <p class="price">&#x20B9 {{p.price}}</p>
+      <p><form action="{{url_for('select_product',id=p.pid)}}"><button type="submit">Add to Cart</button></form></p>
+    </div>
+  </td>
+  
+  {% if loop.index%3==0 %}
+  </tr>
+  <tr>
+    {% endif %}
+  
+    {% endfor %}
+  
+  </tr>
+  </table>
+{% endblock %}

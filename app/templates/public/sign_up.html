@@ -1,0 +1,160 @@
+{% extends "public/templates/public_template.html" %}
+{% block title %}Sign Up{% endblock %}
+{% block main %}
+  <style>
+    input[type="email"]:valid {
+      outline: 2px solid green;
+    }
+  
+    input[type="email"]:invalid {
+      outline: 2px solid red;
+    }
+  
+    label {
+      display: block;
+      font-weight: bold;
+    }
+  
+    .rr{
+      width: auto;
+      padding: 12px 20px;
+      margin: 10px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      font-size: 12px;
+    }
+  
+  
+  
+    input[type=password]:focus {
+      background-color: lightpink;
+    }
+  
+    input[type=submit],
+    input[type=reset] {
+      width: 40%;
+      background-color: #ffde5a;
+      color: black;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: larger;
+    }
+  
+    input[type=submit]:hover {
+      opacity: 0.8;
+    }
+  
+    article {
+      border-radius: 10px;
+      background-color: #f2f2f2;
+      margin: 50px 400px;
+    }
+  
+  
+    .about-section {
+      padding: 10px;
+      text-align: center;
+      background-color: #474e5d;
+      color: white;
+    }
+  </style>
+  <script>
+    function getValue() {
+
+      var p = document.myform2.psw.value;
+      var rp = document.myform2.rpsw.value;
+
+      if (p != rp) {
+        alert("Paswords do not match");
+        return false;
+      }
+    }
+  </script>
+
+
+
+<div class="about-section">
+  <h1>Sign up Form</h1>
+</div>
+<center>
+
+  <article>
+
+    <form name="register" method="post">
+      <br>
+
+      {{form.csrf_token}}
+
+{{form.name.label}}
+{{form.name(class="rr")}}<br>
+
+<br>{{form.date.label}}
+{{form.date(class="rr")}}<br><br>
+
+{{form.gender.label}}
+{{form.gender(class="rr")}}
+
+<br><br>{{form.email.label}}
+{{form.email(class="rr")}}<br><br>
+
+{{form.psw.label}}
+{{form.psw(class="rr")}}<br><br>
+
+{{form.rpsw.label}}
+{{form.rpsw(class="rr")}}<br><br>
+
+{{form.mob.label}}
+{{form.mob(class="rr")}}<BR>
+
+{{form.submit}}<br><br>
+
+      <!-- <label for="name">Enter name:</label>
+      <input class="rr" type="text" id="name" required name="name"><br>
+
+      <br><label for="mydate">Select date of birth:</label>
+      <input class="rr" type="date" id="mydate" name="date"><br><br>
+
+
+      <label>Gender</label><br> 
+   
+      <table align="center">
+        <tr>
+          <td> <input type="radio" name="gender" value="Male">Male</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+
+          <td> <input type="radio" name="gender" value="Female"> Female</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td> <input type="radio" name="gender" value="Other">Other </td>
+        </tr>
+      </table>
+
+
+      <br><br><label for="myemail">Enter Email Address:</label>
+      <input class="rr" type="email" id="myemail" required name="email"><br><br>
+
+      <label for="psw">Enter Password:</label>
+      <input class="rr" type="password" name="psw" minlength="6" required><br><br>
+
+      <label for="rpsw">Confirm password:</label>
+      <input class="rr" type="password" name="rpsw" minlength="6" required><br><br>
+
+      <label for="mob">Enter Mobile no:</label>
+      <input class="rr" type="tel" id="mob" name="mob"><br>
+
+      <input class="rr" type="submit" value="Register" /><br><br> -->
+    </form>
+  </article>
+</center>
+
+
+
+{% endblock %}

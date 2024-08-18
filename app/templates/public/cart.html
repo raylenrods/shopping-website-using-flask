@@ -1,0 +1,189 @@
+{% extends "public/templates/public_template.html" %}
+
+{% block title %}
+{{heading}}s
+{% endblock %}
+
+{% block main %}
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/cart.css')}}">
+
+<style>
+      .alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px
+}
+
+.alert h4 {
+    margin-top: 0;
+    color: inherit
+}
+
+.alert .alert-link {
+    font-weight: 700
+}
+
+.alert>p,
+.alert>ul {
+    margin-bottom: 0
+}
+
+.alert>p+p {
+    margin-top: 5px
+}
+
+.alert-warning {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc
+}
+
+.alert-warning hr {
+    border-top-color: #f7e1b5
+}
+
+.alert-warning .alert-link {
+    color: #66512c
+}
+
+.alert-dismissable,
+.alert-dismissible {
+    padding-right: 35px
+}
+
+.alert-dismissable .close,
+.alert-dismissible .close {
+    position: relative;
+    top: -2px;
+    right: -21px;
+    color: inherit
+}
+
+.container {
+    padding-right: 55px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto
+}
+
+.container:after .container:before {
+      display: table;
+    content: " "
+}
+
+.container:after {
+    clear: both
+}
+</style>
+
+
+
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<ul>
+    {% for category,message in messages %}
+    <div class="container" style="width: 50%;" onClick="this.parentNode.style.display = 'none';">
+        <div class="alert alert-warning alert-dismissible">
+            <span>{{category}} : {{message}}</span>
+            <span style="float:right;font-size:large;"><a style="text-decoration: none;" href="#" class="close"
+                    data-dismiss="alert" aria-label="close">&times;</a></span>
+        </div>
+    </div> {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+<div class="shopping-cart">
+    <!-- Title -->
+    <div class="title">
+        <h3><center>Shopping Cart</center></h3>
+    </div>
+
+
+        {% for row in results%}
+        {% for p in row%}
+        {% if loop.index == row|length %}
+    <!-- Product #1 -->
+    <div class="item">
+        <div class="buttons">
+            &nbsp;
+
+
+        </div>
+
+        <div class="image">
+            <img src="{{url_for('static',filename='img/'+p.image)}}" alt="" />
+        </div>
+
+        <div class="description">
+            <span class="na" style="font-size:large;"><b><a style="text-decoration: none;color: black;" href="{{url_for('product_specs',id=p.pid)}}">{{p.pname}}</a></b></span>
+            <span class="na">{{p.category}}</span>
+        </div>
+
+        <div class="quantity">
+            
+        &nbsp;&nbsp;
+
+
+            <button class="plus-btn bt" type="button" name="button" >
+                <b>-</b>
+            </button>
+            <input type="text" name="name" value="1">
+            <button class="minus-btn bt" type="button" name="button">
+               <b>+</b>             </button>
+        </div>
+                <div class="total-price">&nbsp;</div>
+                
+        <div class="total-price"><a href="{{url_for('remove_product',id=p.pid)}}"><i class="fa fa-trash" style="color:rgb(225, 72, 72);font-size:large;"></i></a></div>
+        <div class="total-price">&#x20B9 {{p.price}}</div>
+    </div>
+
+{% endif %}
+
+{% endfor %}
+{% endfor %}
+
+
+
+
+    </div>
+
+    <div class="shopping-cart">
+
+        
+        
+        <!-- Title -->
+        <div class="title" style="text-align: right;">
+            
+            <h3>
+                {%if total==0 %}
+                Total:&nbsp;&nbsp;&#x20B9 0
+                {% else %}
+                Total:&nbsp;&nbsp;&#x20B9 {{total}}
+                {% endif %}
+            </h3>
+        </div>
+    
+    </div>
+
+</div>
+
+
+
+
+
+        
+
+        
+        
+     
+        
+
+        
+
+
+        
+                
+
+{% endblock %}

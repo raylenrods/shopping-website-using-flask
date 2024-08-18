@@ -1,0 +1,112 @@
+{% extends "public/templates/public_template.html" %}
+
+{% block title %}
+About Us
+{% endblock %}
+
+{% block main %}
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+  
+  
+    .container {
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+  
+    label {
+      color: #000000;
+    }
+  
+    article {
+      border-radius: 10px;
+      background-color: #f2f2f2;
+      padding: 25px;
+      margin: 50px 400px;
+    }
+  
+  
+  
+    .about-section {
+      padding: 50px;
+      text-align: center;
+      background-color: #474e5d;
+      color: white;
+    }
+  
+  
+  
+    .card {
+      max-width: 300px;
+      margin: auto;
+      text-align: center;
+      font-family: arial;
+    }
+  
+    .price {
+      color: grey;
+      font-size: 22px;
+    }
+  
+  
+    .card h2 {
+      margin-top: -4%;
+    }
+  </style>
+
+
+  <div class="about-section">
+    <h1>About Us</h1>
+    <p>We are a brand which has been born into mother nature. It's time to create a new feeling.</p>
+  </div>
+
+  <article style="margin:50px 220px;">
+
+    <h2 style="text-align:center">Our journey began in 1991</h2>
+    <p style="font-size: 20px;line-height: 1.6;text-align:center">Cam Center was established in 1991 with the objective of providing sales service for Digital Camera, SLR Camera, Handycam, their accessories and all other related products.
+
+      CAM CENTER TRADING. LTD. is an organization aided with young, dynamic & dedicated people. Since its inception, the sincere efforts of our personnel are directed towards achieving maximum customer satisfaction.</p>
+
+  </article>
+
+  <center>
+    <table style="width:80%">
+      <tr>
+        <td>
+          <div class="card">
+            <br>
+            <img src="{{url_for('static',filename='img/a1.png')}}" style="width:50%">
+            <p class="price">The companys philosophy stands on the pedestal of Quality, Commitment & Excellence.</p>
+          </div>
+
+
+        <td>
+          <div class="card">
+            <br>
+            <img src="{{url_for('static',filename='img/a2.png')}}" style="width:50%">
+            <p class="price">Commitment is what transforms a promise into reality. It is the words that speak boldly of our intentions.</p>
+          </div>
+        </td>
+
+
+        </td>
+        <td>
+          <div class="card">
+            <img src="{{url_for('static',filename='img/a3.png')}}" style="width:50%">
+            <p class="price">Going far beyond the call of duty, doing more than others expect, this is what excellence is all about. </p>
+          </div>
+        </td>
+
+      </tr>
+    </table>
+
+  </center>
+  </table>
+  <br><br><br>
+
+{% endblock %}
+
+

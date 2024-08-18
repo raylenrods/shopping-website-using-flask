@@ -1,0 +1,38 @@
+{% extends "admin/templates/admin_template.html" %}
+
+{% block title %}
+Dashboard Page
+{% endblock %}
+
+{% block main %}
+
+
+ {% for u in users %}
+
+ <table>
+    <tr>
+
+        <div class="card">
+            <div class="card-header">
+                Name: <b>{{u.name}}</b>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Email: <b>{{u.email}}</b></h5><br>
+                                <h5 class="card-title">DOB: <b>{{u.dob}}</b></h5><br>
+                <h5 class="card-title">Gender: <b>{{u.gender}}</b></h5><br>
+                <h5 class="card-title">Mobile: <b>{{u.mobile}}</b></h5>
+            </div>
+        </div>
+        </tr>
+        <tr>
+
+        {% endfor %}
+
+    </tr>
+ </table>
+
+
+
+
+{% endblock %}
+

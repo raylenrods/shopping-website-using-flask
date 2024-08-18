@@ -1,0 +1,120 @@
+{% extends "public/templates/public_template.html" %}
+
+{% block title %}
+Contact Us
+{% endblock %}
+
+{% block main %}
+
+  <style>
+    #fn,
+    #ln,
+    #em,
+    select,
+    textarea ,#subject{
+      width: 100%;
+      padding: 12px;
+      border: 1px solid rgb(219, 213, 213);
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-top: 6px;
+      margin-bottom: 16px;
+      resize: vertical;
+    }
+  
+    input[type=submit] {
+      background-color: #ffde5a;
+      color: rgb(0, 0, 0);
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  
+    input[type=submit]:hover {
+      background-color: #45a049;
+    }
+  
+    .container {
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+  
+    label {
+      color: #000000;
+    }
+  
+  
+    article {
+      border-radius: 10px;
+      background-color: #f2f2f2;
+      padding: 25px;
+      margin: 50px 400px;
+    }
+  
+  
+    .about-section {
+      padding: 10px;
+      text-align: center;
+      background-color: #474e5d;
+      color: white;
+    }
+  </style>
+
+
+  <div class="about-section">
+    <h1>Contact Us</h1>
+  </div>
+
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <ul class=flashes>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  {% endwith %}
+
+  <article> 
+    <div class="container">
+      <form action="" method="post">
+        {{form.csrf_token}}
+
+
+        {{form.fname.label}}
+        {{form.fname(id="fn",placeholder="Your name..")}}
+
+        {{form.lname.label}}
+        {{form.lname(id="ln",placeholder="Your last name..")}}
+
+        {{form.email.label}}
+        {{form.email(id="em",placeholder="Enter your email.")}}
+
+        {{form.subject.label}}
+        {{form.subject(id="subject",laceholder="Write something..",style="height:150px")}}
+
+        {{form.submit}}
+
+<!-- 
+        <label for="fname">First Name</label>
+        <input type="text" id="fn" name="firstname" placeholder="Your name..">
+
+        <label for="lname">Last Name</label>
+        <input type="text" id="ln" name="lastname" placeholder="Your last name..">
+
+
+        <label for="lname">Email</label>
+        <input type="text" id="em" name="email" placeholder="Enter your email.">
+
+        <label for="subject">Subject</label>
+        <textarea id="subject" name="subject" placeholder="Write something.." style="height:150px"></textarea>
+
+        <input type="submit" value="Submit">
+-->
+      </form>
+    </div>
+  </article>
+
+{% endblock %}

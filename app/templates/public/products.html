@@ -1,0 +1,96 @@
+{% extends "public/templates/public_template.html" %}
+
+{% block title %}
+Home Page
+{% endblock %}
+
+{% block main %}
+
+
+    <style>
+        .card {
+            max-width: 300px;
+            margin: auto;
+            text-align: center;
+            font-family: arial;
+        }
+
+        .price {
+            color: grey;
+            font-size: 22px;
+        }
+
+
+        .card h2 {
+            margin-top: -4%;
+        }
+
+        video {
+            object-fit: fill
+        }
+
+
+        .about-section {
+            padding: 10px;
+            text-align: center;
+            background-color: #474e5d;
+            color: white;
+        }
+    </style>
+
+
+
+    <div class="about-section">
+        <ul class="breadcrumb">
+            <li><a href="{{url_for('home')}}">Home</a></li>
+            <li>Products</li>
+        </ul>
+
+
+        <h1>Product Categories </h1>
+    </div>
+    <table style="width:100%">
+        <tr>
+
+            <td>
+                <div class="card">
+                    <a href="{{url_for('product_gallery',cat='DSLR Camera')}}"><img src="{{url_for('static',filename='img/dslr2.jpeg')}}" style="width:100%"></a>
+                    <h2>DSLR Cameras</h2>
+                </div>
+            </td>
+
+            <td>
+                <div class="card">
+                    <a href="{{url_for('product_gallery',cat='Mirrorless Camera')}}"><img src="{{url_for('static',filename='img/mirror.jpeg')}}" style="width:100%"></a>
+                    <h2>Mirrorless Cameras</h2>
+                </div>
+            </td>
+
+            <td>
+                <div class="card">
+                    <a href="{{url_for('product_gallery',cat='Action Camera')}}"><img src="{{url_for('static',filename='img/gopro.jpeg')}}" style="width:100%"></a>
+                    <h2>Action Cameras</h2>
+                </div>
+
+            </td>
+        </tr>
+
+
+    </table>
+
+
+
+
+    <br><br>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+    <br>
+
+
+
+
+
+
+    <br><br><br>
+
+
+{% endblock %}

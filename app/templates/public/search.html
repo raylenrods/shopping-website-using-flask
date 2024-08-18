@@ -1,0 +1,117 @@
+{% extends "public/templates/public_template.html" %}
+
+{% block title %}
+Search
+{% endblock %}
+
+{% block main %}
+
+<style>
+.card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, .125);
+    border-radius: .25rem
+}
+
+
+.card-img-top {
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    width: 100%
+}
+
+.card-img-top {
+    border-top-left-radius: calc(.25rem - 1px);
+    border-top-right-radius: calc(.25rem - 1px)
+}
+
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem
+}
+
+.card-title {
+    margin-bottom: .75rem
+}
+
+.card-text:last-child {
+    margin-bottom: 0
+}
+
+
+.btn-primary {
+    color: rgb(0, 0, 0);
+    background-color: #ffde5a;
+    text-decoration: none;
+
+}
+a:hover {
+    color: rgb(0, 0, 0);
+    background-color: #ffe57c;
+    border-color: #0062cc
+}
+
+.btn {
+    width: 50%;
+    display: inline-block;
+    font-weight: 400;
+    color: #010101;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out
+}
+
+
+</style>
+
+<h2><center>Search Returned {{products|length}} Results..</center></h2>
+
+
+    <table style="width:50%" cellpadding="40%" align="center">
+    
+        <tr>
+            {% for p in products %}
+    
+            <td>
+                <div class="card" style="width: 22rem;">
+                    <img class="card-img-top" src="{{url_for('static',filename='img/'+p.image)}}" alt="Card image cap">
+                    <div class="card-body">
+                        <h2 class="card-title"><b>{{p.name}}</b></h2>
+                        <p class="card-text"><b>Category</b>: {{p.category}}</p>
+                        <p class="card-text"><b>Price</b>: &#x20B9 {{p.price}}</p>
+                        <center><a href="{{url_for('product_specs',id=p.pid)}}" class="btn btn-primary">View</a></center>
+                    </div>
+                </div>
+            </td>
+    
+            {% if loop.index%3==0 %}
+        </tr>
+        <tr>
+            {% endif %}
+    
+            {% endfor %}
+        </tr>
+    </table>
+
+
+{% endblock %}
+
